@@ -1,0 +1,46 @@
+# Core data
+scikit-learn>=1.2
+category_encoders>=2.5
+pycaret[full]>=3.0
+catboost>=1.2
+lightgbm>=4.0
+xgboost>=2.0
+
+
+# Time series / forecasting
+neuralprophet>=0.5
+nixtla-mlforecast>=0.6
+skforecast>=0.8
+
+
+# Optimization & OR
+ortools>=9.6
+pyomo>=6.5
+
+
+# Computer Vision / OCR
+opencv-python>=4.8
+easyocr>=1.6
+pillow>=10.0
+
+
+# API / Dashboard
+streamlit>=1.22
+fastapi>=0.95
+uvicorn>=0.22
+
+
+# Experiment tracking / tuning
+mlflow>=2.6
+optuna>=3.3
+
+
+# Orchestration (optional for hackathon)
+prefect>=2.8
+apache-airflow==2.8.2
+
+
+# Utilities
+python-dotenv>=1.0
+requests>=2.31
+loguru>=0.7
