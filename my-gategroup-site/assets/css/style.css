@@ -1,0 +1,20 @@
+:root{
+  --bg:#f3f6fb;
+  --card:#ffffff;
+  --accent:#0b5ed7;
+  --muted:#6b7280;
+  --danger:#d9534f;
+}
+*{box-sizing:border-box;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
+html,body{height:100%;margin:0;background:var(--bg)}
+.container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{width:100%;max-width:420px;background:var(--card);border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(15,23,42,0.08)}
+h1{margin:0 0 6px;font-size:20px}
+.muted{color:var(--muted);margin:0 0 20px;font-size:13px}
+label{display:block;margin-top:12px;font-size:13px;color:#111827}
+input[type="text"],input[type="password"]{width:100%;padding:10px 12px;border:1px solid #e6e9ef;border-radius:8px;margin-top:6px;font-size:14px}
+button{margin-top:18px;width:100%;padding:10px 12px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer}
+button:active{transform:translateY(1px)}
+.message{margin-top:14px;font-size:14px}
+.info{margin-top:18px;color:var(--muted);font-size:13px;background:#f8fafc;padding:10px;border-radius:8px}
+code{background:#0f1724;color:#fff;padding:2px 6px;border-radius:4px;font-size:12px}
