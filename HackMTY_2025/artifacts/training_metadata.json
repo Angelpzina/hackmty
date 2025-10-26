@@ -1,0 +1,18 @@
+{
+  "target": "Quantity",
+  "features": [
+    "Passenger_Count",
+    "Standard_Specification_Qty",
+    "Quantity_Returned",
+    "Quantity_Consumed",
+    "Unit_Cost",
+    "dow",
+    "weekofyear",
+    "Quantity_lag_1",
+    "Quantity_lag_7",
+    "Quantity_roll7_mean"
+  ],
+  "n_rows_train": 196,
+  "date_col_present": true,
+  "notes": "Modelo RandomForestRegressor con enriquecimiento temporal/lag si hubo fecha."
+}

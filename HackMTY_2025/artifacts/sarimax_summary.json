@@ -1,0 +1,19 @@
+{
+  "target": "Quantity",
+  "horizon": 30,
+  "order": [
+    2,
+    1,
+    2
+  ],
+  "seasonal_order": [
+    1,
+    1,
+    1,
+    7
+  ],
+  "freq_used": "D",
+  "n_obs": 3,
+  "var": 142773857.33333334,
+  "status": "sarimax_ok"
+}
