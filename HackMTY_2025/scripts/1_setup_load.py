@@ -1,5 +1,6 @@
 
 from __future__ import annotations
+from pathlib import Path
 import os
 import pandas as pd
 import numpy as np
@@ -7,7 +8,12 @@ import numpy as np
 ART_DIR = os.path.join("artifacts")
 os.makedirs(ART_DIR, exist_ok=True)
 
-DATA_DIR = "data"
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "data"
+print("📂 Directorio base:", BASE_DIR)
+print("📂 Directorio de datos:", DATA_DIR)
+print("📄 Archivos disponibles:", list(DATA_DIR.glob("*")))
+
 
 FILE_CONS = "[HackMTY2025]_ConsumptionPrediction_Dataset_v1.xlsx"
 FILE_EXP  = "[HackMTY2025]_ExpirationDateManagement_Dataset_v1.xlsx"

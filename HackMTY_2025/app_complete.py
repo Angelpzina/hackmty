@@ -1,11 +1,3 @@
-"""
-Smart Catering Intelligence System (SCIS)
-Complete Streamlit Application
-HackMTY 2025
-
-Ejecutar con: streamlit run app_complete.py
-"""
-
 import os
 import json
 import subprocess
