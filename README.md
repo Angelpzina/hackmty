@@ -1,86 +1,122 @@
-This repository is a scaffold for the Smart Catering Intelligence System (SCIS) — an integrated solution to handle Expiration Date Management, Consumption Prediction, and Productivity Estimation for airline catering.
-from ortools.sat.python import cp_model
-import pandas as pd
-from pathlib import Path
+# 🚀 SCIS - Instrucciones Completas (Copia y Pega)
 
+## 📋 PASO 1: Crea estos archivos
 
-PROC = Path("data/processed")
+Copia y pega el contenido de cada archivo que te di arriba en tu carpeta `HackMTY_2025/`
 
+### Estructura final que debes tener:
 
+```
+HackMTY_2025/
+├── app_complete.py           ← ARCHIVO PRINCIPAL
+├── crear_datos_prueba.py     ← Generador de datos
+├── requirements.txt          ← Dependencias
+├── quick_start.sh            ← Para Mac/Linux
+├── quick_start.bat           ← Para Windows
+├── README.md                 ← Documentación
+├── data/                     ← Aquí van tus Excel
+└── scripts/                  ← (Ya los tienes)
+    ├── 1_setup_load.py
+    ├── 2_master_timeline.py
+    ├── 3_model_training.py
+    ├── 4_buffer_recommendation.py
+    └── 6_sarimax_forecasting.py
+```
 
+---
 
-def simple_assign(exp_df: pd.DataFrame, forecast_df: pd.DataFrame):
-# exp_df: columns [Product_ID, LOT_Number, Expiry_Date, Quantity]
-# forecast_df: columns [Flight_ID, Product_ID, Predicted_Quantity]
-model = cp_model.CpModel()
-assignments = {}
-# Build indices
-lots = list(exp_df.itertuples(index=False))
-flights = list(forecast_df.itertuples(index=False))
+## 🎯 PASO 2: Instalación Rápida
 
+### En Windows:
+```cmd
+# Abre CMD o PowerShell en la carpeta HackMTY_2025
+pip install pandas numpy scikit-learn matplotlib openpyxl joblib streamlit plotly statsmodels
 
-# Example boolean variable x[i][j] = assign lot i to flight j
-x = {}
-for i, lot in enumerate(lots):
-for j, flight in enumerate(flights):
-x[(i,j)] = model.NewBoolVar(f"x_{i}_{j}")
-# Constraints: don't assign more than available and satisfy flight needs approximately
-# (This is a placeholder: implement real constraints at hackathon)
-model.Maximize(sum(x[(i,j)] for i in range(len(lots)) for j in range(len(flights))))
-solver = cp_model.CpSolver()
-solver.Solve(model)
-return {}
+# Ejecuta esto:
+quick_start.bat
+```
 
+### En Mac/Linux:
+```bash
+# Abre Terminal en la carpeta HackMTY_2025
+pip install pandas numpy scikit-learn matplotlib openpyxl joblib streamlit plotly statsmodels
 
---- src/dashboard/app.py ---
-"""Streamlit demo app (very lightweight) to show a couple of KPIs and sample predictions.
-Run: streamlit run src/dashboard/app.py
-"""
-import streamlit as st
-import pandas as pd
-from pathlib import Path
+# Dale permisos al script:
+chmod +x quick_start.sh
 
+# Ejecuta esto:
+./quick_start.sh
+```
 
-PROC = Path("data/processed")
+---
 
+## 🎮 PASO 3: Usa la App
 
-st.set_page_config(page_title="SCIS Demo", layout="wide")
-st.title("Smart Catering Intelligence System - Demo")
+### Si NO tienes los archivos Excel todavía:
 
+```bash
+# 1. Genera datos de prueba
+python crear_datos_prueba.py
 
-st.sidebar.header("Data")
-if (PROC / "flight_consumption.parquet").exists():
-fc = pd.read_parquet(PROC / "flight_consumption.parquet")
-st.sidebar.success("flight_consumption loaded")
-else:
-st.sidebar.warning("flight_consumption.parquet not found in data/processed")
+# 2. Abre la app
+streamlit run app_complete.py
+```
 
+### Si YA tienes los 3 archivos Excel:
 
-if st.button("Show sample consumption"):
-if 'fc' in locals():
-st.dataframe(fc.head(20))
-else:
-st.info("Run ETL first and place files in data/processed")
+```bash
+# 1. Copia tus 3 Excel a la carpeta data/
+#    - [HackMTY2025]_ConsumptionPrediction_Dataset_v1.xlsx
+#    - [HackMTY2025]_ExpirationDateManagement_Dataset_v1.xlsx
+#    - [HackMTY2025]_ProductivityEstimation_Dataset_v1.xlsx
 
+# 2. Abre la app
+streamlit run app_complete.py
 
-st.header("Quick KPIs")
-col1, col2, col3 = st.columns(3)
-col1.metric("Flights (sample)", fc['Flight_ID'].nunique() if 'fc' in locals() else "-")
-col2.metric("Products (sample)", fc['Product_ID'].nunique() if 'fc' in locals() else "-")
-col3.metric("Avg Consumed (sample)", round(fc['Quantity_Consumed'].mean(),2) if 'fc' in locals() else "-")
+# 3. En la app (en el navegador), click en el botón:
+#    "🚀 Run Complete Pipeline"
+```
 
+---
 
-st.markdown("---")
-st.info("This app is a minimal demo. Extend with plots, error tables, and optimization outputs.")
+## ✅ ¡Eso es todo!
 
+La app se abrirá en tu navegador en: **http://localhost:8501**
 
---- notebooks/01_data_cleaning.ipynb ---
-# Notebook placeholder: EDA and cleaning steps. Use pandas/polars and ydata-profiling for summaries.
+Verás 4 pestañas:
+1. 🏠 Overview - Resumen general
+2. 📅 Expiration Management - Gestión de caducidad
+3. 📈 Consumption Prediction - Pronósticos de consumo
+4. ⏱️ Productivity Estimation - Estimación de productividad
 
+---
 
---- notebooks/02_feature_engineering.ipynb ---
-# Notebook placeholder: create features for consumption, expiration, and productivity models.
+## 🆘 Si algo falla:
 
+### Error: "command not found: streamlit"
+```bash
+pip install streamlit plotly
+```
 
---- notebooks/03_model_training.ipynb ---
-# Notebook placeholder: training experiments with CatBoost, LightGBM, and NeuralProphet.
+### Error: "No such file: data/..."
+```bash
+# Genera datos de prueba:
+python crear_datos_prueba.py
+```
+
+### Error: "ModuleNotFoundError"
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 📦 Descarga Rápida de Archivos
+
+Si quieres que te envíe cada archivo por separado para copiar y pegar, dime y te los paso uno por uno. Los archivos clave son:
+
+1. **app_complete.py** (el más importante)
+2. **crear_datos_prueba.py**
+3. **requirements.txt**
+
+¿Quieres que te los pase ahora?
