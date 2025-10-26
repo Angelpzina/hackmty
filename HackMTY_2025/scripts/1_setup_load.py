@@ -9,10 +9,18 @@ ART_DIR = os.path.join("artifacts")
 os.makedirs(ART_DIR, exist_ok=True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data"
-print("📂 Directorio base:", BASE_DIR)
-print("📂 Directorio de datos:", DATA_DIR)
-print("📄 Archivos disponibles:", list(DATA_DIR.glob("*")))
+# Buscar automáticamente la carpeta 'data' aunque esté en otro nivel
+CANDIDATES = [
+    BASE_DIR / "data",
+    BASE_DIR.parent / "data",
+    Path(__file__).resolve().parent / "data",
+    Path(__file__).resolve().parent.parent / "data",
+]
+
+DATA_DIR = next((p for p in CANDIDATES if p.exists()), None)
+if DATA_DIR is None:
+    raise FileNotFoundError("❌ No se encontró carpeta 'data' en ninguna ruta esperada.")
+
 
 
 FILE_CONS = "[HackMTY2025]_ConsumptionPrediction_Dataset_v1.xlsx"
