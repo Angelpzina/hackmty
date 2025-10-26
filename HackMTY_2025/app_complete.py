@@ -1,11 +1,3 @@
-"""
-Smart Catering Intelligence System (SCIS)
-Complete Streamlit Application
-HackMTY 2025
-
-Ejecutar con: streamlit run app_complete.py
-"""
-
 import os
 import json
 import subprocess
@@ -16,7 +8,6 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
-import sys
 
 # ========================================
 # CONFIGURACIÓN
@@ -95,37 +86,29 @@ def load_artifacts():
 
 def run_pipeline():
     """Ejecuta el pipeline completo de procesamiento"""
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    scripts_dir = os.path.join(base_dir, "scripts")
-
     scripts = [
-        "1_setup_load.py",
-        "2_master_timeline.py",
-        "3_model_training.py",
-        "4_buffer_recommendation.py",
-        "6_sarimax_forecasting.py",
+        "scripts/1_setup_load.py",
+        "scripts/2_master_timeline.py",
+        "scripts/3_model_training.py",
+        "scripts/4_buffer_recommendation.py",
+        "scripts/6_sarimax_forecasting.py",
     ]
-
+    
     progress_bar = st.progress(0)
     status_text = st.empty()
-
+    
     for i, script in enumerate(scripts):
-        script_path = os.path.join(scripts_dir, script)
-        status_text.text(f"Ejecutando {script}...")
-        result = subprocess.run([sys.executable, script_path],
-                                capture_output=True, text=True)
-
+        status_text.text(f"Ejecutando {Path(script).name}...")
+        result = subprocess.run(["python", script], capture_output=True, text=True)
+        
         if result.returncode != 0:
-            st.error(f"❌ Error en {script}:\n{result.stderr[:400]}")
+            st.error(f"❌ Error en {script}:\n{result.stderr[:500]}")
             return False
-
+        
         progress_bar.progress((i + 1) / len(scripts))
-
+    
     status_text.text("✅ Pipeline completado exitosamente")
     return True
-
-
-
 
 # ========================================
 # COMPONENTES UI
