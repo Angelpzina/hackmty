@@ -86,29 +86,31 @@ def load_artifacts():
 
 def run_pipeline():
     """Ejecuta el pipeline completo de procesamiento"""
+    base_path = Path(__file__).resolve().parent  # Directorio donde está este script
     scripts = [
-        "scripts/1_setup_load.py",
-        "scripts/2_master_timeline.py",
-        "scripts/3_model_training.py",
-        "scripts/4_buffer_recommendation.py",
-        "scripts/6_sarimax_forecasting.py",
+        base_path / "scripts" / "1_setup_load.py",
+        base_path / "scripts" / "2_master_timeline.py",
+        base_path / "scripts" / "3_model_training.py",
+        base_path / "scripts" / "4_buffer_recommendation.py",
+        base_path / "scripts" / "6_sarimax_forecasting.py",
     ]
-    
+
     progress_bar = st.progress(0)
     status_text = st.empty()
-    
-    for i, script in enumerate(scripts):
-        status_text.text(f"Ejecutando {Path(script).name}...")
-        result = subprocess.run(["python", script], capture_output=True, text=True)
-        
+
+    for i, script_path in enumerate(scripts):
+        status_text.text(f"Ejecutando {script_path.name}...")
+        result = subprocess.run(["python", str(script_path)], capture_output=True, text=True)
+
         if result.returncode != 0:
-            st.error(f"❌ Error en {script}:\n{result.stderr[:500]}")
+            st.error(f"❌ Error en {script_path.name}:\n{result.stderr[:500]}")
             return False
-        
+
         progress_bar.progress((i + 1) / len(scripts))
-    
+
     status_text.text("✅ Pipeline completado exitosamente")
     return True
+
 
 # ========================================
 # COMPONENTES UI
