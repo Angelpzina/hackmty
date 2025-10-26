@@ -99,8 +99,6 @@ def load_artifacts():
 
 def run_pipeline():
     """Ejecuta el pipeline completo de procesamiento"""
-    import os, sys, subprocess, streamlit as st
-
     base_dir = os.path.dirname(os.path.abspath(__file__))
     scripts_dir = os.path.join(base_dir, "scripts")
 
@@ -129,6 +127,7 @@ def run_pipeline():
 
     status_text.text("✅ Pipeline completado exitosamente")
     return True
+
 
 
 
