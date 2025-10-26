@@ -8,6 +8,8 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
+import sys
+
 
 # ========================================
 # CONFIGURACIÓN
@@ -100,7 +102,7 @@ def run_pipeline():
 
     for i, script_path in enumerate(scripts):
         status_text.text(f"Ejecutando {script_path.name}...")
-        result = subprocess.run(["python", str(script_path)], capture_output=True, text=True)
+        result = subprocess.run([sys.executable, str(script_path)], capture_output=True, text=True)
 
         if result.returncode != 0:
             st.error(f"❌ Error en {script_path.name}:\n{result.stderr[:500]}")
