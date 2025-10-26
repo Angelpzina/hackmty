@@ -4,6 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 
+
 ART_DIR = os.path.join("artifacts")
 os.makedirs(ART_DIR, exist_ok=True)
 
