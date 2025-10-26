@@ -4,13 +4,10 @@ import os
 import pandas as pd
 import numpy as np
 
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_DIR = os.path.abspath(os.path.join(BASE_DIR, ".."))
-
-DATA_DIR = os.path.join(PROJECT_DIR, "data")
-ART_DIR = os.path.join(PROJECT_DIR, "artifacts")
+ART_DIR = os.path.join("artifacts")
 os.makedirs(ART_DIR, exist_ok=True)
+
+DATA_DIR = "data"
 
 FILE_CONS = "[HackMTY2025]_ConsumptionPrediction_Dataset_v1.xlsx"
 FILE_EXP  = "[HackMTY2025]_ExpirationDateManagement_Dataset_v1.xlsx"

@@ -1,3 +1,11 @@
+"""
+Smart Catering Intelligence System (SCIS)
+Complete Streamlit Application
+HackMTY 2025
+
+Ejecutar con: streamlit run app_complete.py
+"""
+
 import os
 import json
 import subprocess
@@ -99,8 +107,7 @@ def run_pipeline():
     
     for i, script in enumerate(scripts):
         status_text.text(f"Ejecutando {Path(script).name}...")
-        script_path = Path(__file__).parent / script
-        result = subprocess.run(["python", str(script_path.resolve())], capture_output=True, text=True)
+        result = subprocess.run(["python", script], capture_output=True, text=True)
         
         if result.returncode != 0:
             st.error(f"❌ Error en {script}:\n{result.stderr[:500]}")
