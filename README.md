@@ -1,4 +1,4 @@
-# 🚀 SCIS - Instrucciones Completas (Copia y Pega)
+# 🚀 SCIS - Instrucciones Completas 
 
 ## 📋 PASO 1: Crea estos archivos
 
